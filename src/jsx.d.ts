@@ -1,16 +1,15 @@
 type Defaultize<Props, Defaults> =
 	// Distribute over unions
-	Props extends any
-		? 	// Make any properties included in Default optional
-			& Partial<Pick<Props, Extract<keyof Props, keyof Defaults>>>
-			// Include the remaining properties from Props
-			& Pick<Props, Exclude<keyof Props, keyof Defaults>>
+	Props extends any // Make any properties included in Default optional
+		? Partial<Pick<Props, Extract<keyof Props, keyof Defaults>>> &
+				// Include the remaining properties from Props
+				Pick<Props, Exclude<keyof Props, keyof Defaults>>
 		: never;
 
 export namespace JSXInternal {
-
-	type LibraryManagedAttributes<Component, Props> =
-	Component extends { defaultProps: infer Defaults }
+	type LibraryManagedAttributes<Component, Props> = Component extends {
+		defaultProps: infer Defaults;
+	}
 		? Defaultize<Props, Defaults>
 		: Props;
 
@@ -18,11 +17,9 @@ export namespace JSXInternal {
 		key?: any;
 	}
 
-	interface Element extends preact.VNode<any> {
-	}
+	interface Element extends preact.VNode<any> {}
 
-	interface ElementClass extends preact.Component<any, any> {
-	}
+	interface ElementClass extends preact.Component<any, any> {}
 
 	interface ElementAttributesProperty {
 		props: any;
@@ -36,7 +33,20 @@ export namespace JSXInternal {
 		accentHeight?: number | string;
 		accumulate?: "none" | "sum";
 		additive?: "replace" | "sum";
-		alignmentBaseline?: "auto" | "baseline" | "before-edge" | "text-before-edge" | "middle" | "central" | "after-edge" | "text-after-edge" | "ideographic" | "alphabetic" | "hanging" | "mathematical" | "inherit";
+		alignmentBaseline?:
+			| "auto"
+			| "baseline"
+			| "before-edge"
+			| "text-before-edge"
+			| "middle"
+			| "central"
+			| "after-edge"
+			| "text-after-edge"
+			| "ideographic"
+			| "alphabetic"
+			| "hanging"
+			| "mathematical"
+			| "inherit";
 		allowReorder?: "no" | "yes";
 		alphabetic?: number | string;
 		amplitude?: number | string;
@@ -605,7 +615,7 @@ export namespace JSXInternal {
 		srcSet?: string;
 		start?: number;
 		step?: number | string;
-		style?: string | {[key: string]: string | number};
+		style?: string | { [key: string]: string | number };
 		summary?: string;
 		tabIndex?: number;
 		target?: string;
@@ -748,8 +758,9 @@ export namespace JSXInternal {
 		track: HTMLAttributes;
 		u: HTMLAttributes;
 		ul: HTMLAttributes;
-		"var": HTMLAttributes;
+		var: HTMLAttributes;
 		video: HTMLAttributes;
+		volume: HTMLAttributes;
 		wbr: HTMLAttributes;
 
 		//SVG
